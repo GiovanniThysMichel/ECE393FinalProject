@@ -1,0 +1,169 @@
+xrun(64): 18.09-s011: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	18.09-s011: Started on Nov 11, 2023 at 22:39:46 CST
+xrun
+	-64bit
+	-gui
+	-access r
+	tb_conv.v
+	CONV_ACC.v
+Recompiling... reason: file './tb_conv.v' is newer than expected.
+	expected: Sat Nov 11 22:39:19 2023
+	actual:   Sat Nov 11 22:39:44 2023
+file: tb_conv.v
+            ifm_r[7:0]   = ifm_in[ifm_cnt+0];
+                                         |
+xmvlog: *W,BIGWIX (tb_conv.v,68|41): Memory index truncation.
+            ifm_r[15:8]  = ifm_in[ifm_cnt+1];
+                                         |
+xmvlog: *W,BIGWIX (tb_conv.v,69|41): Memory index truncation.
+            ifm_r[23:16] = ifm_in[ifm_cnt+2];
+                                         |
+xmvlog: *W,BIGWIX (tb_conv.v,70|41): Memory index truncation.
+            ifm_r[31:24] = ifm_in[ifm_cnt+3];
+                                         |
+xmvlog: *W,BIGWIX (tb_conv.v,71|41): Memory index truncation.
+            ifm_r[39:32] = ifm_in[ifm_cnt+4];
+                                         |
+xmvlog: *W,BIGWIX (tb_conv.v,72|41): Memory index truncation.
+            ifm_r[47:40] = ifm_in[ifm_cnt+5];
+                                         |
+xmvlog: *W,BIGWIX (tb_conv.v,73|41): Memory index truncation.
+            ifm_r[55:48] = ifm_in[ifm_cnt+6];
+                                         |
+xmvlog: *W,BIGWIX (tb_conv.v,74|41): Memory index truncation.
+            ifm_r[63:56] = ifm_in[ifm_cnt+7];
+                                         |
+xmvlog: *W,BIGWIX (tb_conv.v,75|41): Memory index truncation.
+            wgt_r[7:0]   = wgt_in[wgt_cnt+0];
+                                         |
+xmvlog: *W,BIGWIX (tb_conv.v,101|41): Memory index truncation.
+            wgt_r[15:8]  = wgt_in[wgt_cnt+1];
+                                         |
+xmvlog: *W,BIGWIX (tb_conv.v,102|41): Memory index truncation.
+            wgt_r[23:16] = wgt_in[wgt_cnt+2];
+                                         |
+xmvlog: *W,BIGWIX (tb_conv.v,103|41): Memory index truncation.
+            wgt_r[31:24] = wgt_in[wgt_cnt+3];
+                                         |
+xmvlog: *W,BIGWIX (tb_conv.v,104|41): Memory index truncation.
+	module worklib.tb_conv:v
+		errors: 0, warnings: 12
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
+	IFM_BUF ifm_buf0( .clk(clk), .rst_n(rst_n), .ifm_input(rows[0]), .ifm_read(ifm_read_en), 
+	               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,93|16): instance 'tb_conv.conv_acc@CONV_ACC<module>.ifm_buf0' of design unit 'IFM_BUF' is unresolved in 'worklib.CONV_ACC:v'.
+	IFM_BUF ifm_buf1( .clk(clk), .rst_n(rst_n), .ifm_input(rows[1]), .ifm_read(ifm_read_en), 
+	               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,95|16): instance 'tb_conv.conv_acc@CONV_ACC<module>.ifm_buf1' of design unit 'IFM_BUF' is unresolved in 'worklib.CONV_ACC:v'.
+	IFM_BUF ifm_buf2( .clk(clk), .rst_n(rst_n), .ifm_input(rows[2]), .ifm_read(ifm_read_en), 
+	               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,97|16): instance 'tb_conv.conv_acc@CONV_ACC<module>.ifm_buf2' of design unit 'IFM_BUF' is unresolved in 'worklib.CONV_ACC:v'.
+	IFM_BUF ifm_buf3( .clk(clk), .rst_n(rst_n), .ifm_input(rows[3]), .ifm_read(ifm_read_en), 
+	               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,99|16): instance 'tb_conv.conv_acc@CONV_ACC<module>.ifm_buf3' of design unit 'IFM_BUF' is unresolved in 'worklib.CONV_ACC:v'.
+	IFM_BUF ifm_buf4( .clk(clk), .rst_n(rst_n), .ifm_input(rows[4]), .ifm_read(ifm_read_en), 
+	               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,101|16): instance 'tb_conv.conv_acc@CONV_ACC<module>.ifm_buf4' of design unit 'IFM_BUF' is unresolved in 'worklib.CONV_ACC:v'.
+	IFM_BUF ifm_buf5( .clk(clk), .rst_n(rst_n), .ifm_input(rows[5]), .ifm_read(ifm_read_en), 
+	               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,103|16): instance 'tb_conv.conv_acc@CONV_ACC<module>.ifm_buf5' of design unit 'IFM_BUF' is unresolved in 'worklib.CONV_ACC:v'.
+	IFM_BUF ifm_buf6( .clk(clk), .rst_n(rst_n), .ifm_input(rows[6]), .ifm_read(ifm_read_en), 
+	               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,105|16): instance 'tb_conv.conv_acc@CONV_ACC<module>.ifm_buf6' of design unit 'IFM_BUF' is unresolved in 'worklib.CONV_ACC:v'.
+	IFM_BUF ifm_buf7( .clk(clk), .rst_n(rst_n), .ifm_input(rows[7]), .ifm_read(ifm_read_en), 
+	               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,107|16): instance 'tb_conv.conv_acc@CONV_ACC<module>.ifm_buf7' of design unit 'IFM_BUF' is unresolved in 'worklib.CONV_ACC:v'.
+	WGT_BUF wgt_buf0( .clk(clk), .rst_n(rst_n), .wgt_input(wgts[0]), .wgt_read(wgt_read_en), 
+	               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,110|16): instance 'tb_conv.conv_acc@CONV_ACC<module>.wgt_buf0' of design unit 'WGT_BUF' is unresolved in 'worklib.CONV_ACC:v'.
+	WGT_BUF wgt_buf1( .clk(clk), .rst_n(rst_n), .wgt_input(wgts[1]), .wgt_read(wgt_read_en), 
+	               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,112|16): instance 'tb_conv.conv_acc@CONV_ACC<module>.wgt_buf1' of design unit 'WGT_BUF' is unresolved in 'worklib.CONV_ACC:v'.
+	WGT_BUF wgt_buf2( .clk(clk), .rst_n(rst_n), .wgt_input(wgts[2]), .wgt_read(wgt_read_en), 
+	               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,114|16): instance 'tb_conv.conv_acc@CONV_ACC<module>.wgt_buf2' of design unit 'WGT_BUF' is unresolved in 'worklib.CONV_ACC:v'.
+	WGT_BUF wgt_buf3( .clk(clk), .rst_n(rst_n), .wgt_input(wgts[3]), .wgt_read(wgt_read_en), 
+	               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,116|16): instance 'tb_conv.conv_acc@CONV_ACC<module>.wgt_buf3' of design unit 'WGT_BUF' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe00( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf00), .ifm_input1(ifm_buf01), .ifm_input2(ifm_buf02), .ifm_input3(ifm_buf03), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,119|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe00' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe01( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf10), .ifm_input1(ifm_buf11), .ifm_input2(ifm_buf12), .ifm_input3(ifm_buf13), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,121|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe01' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe02( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf20), .ifm_input1(ifm_buf21), .ifm_input2(ifm_buf22), .ifm_input3(ifm_buf23), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,123|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe02' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe03( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf30), .ifm_input1(ifm_buf31), .ifm_input2(ifm_buf32), .ifm_input3(ifm_buf33), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,125|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe03' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe04( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf40), .ifm_input1(ifm_buf41), .ifm_input2(ifm_buf42), .ifm_input3(ifm_buf43), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,127|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe04' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe10( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf10), .ifm_input1(ifm_buf11), .ifm_input2(ifm_buf12), .ifm_input3(ifm_buf13), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,131|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe10' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe11( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf20), .ifm_input1(ifm_buf21), .ifm_input2(ifm_buf22), .ifm_input3(ifm_buf23), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,133|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe11' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe12( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf30), .ifm_input1(ifm_buf31), .ifm_input2(ifm_buf32), .ifm_input3(ifm_buf33), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,135|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe12' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe13( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf40), .ifm_input1(ifm_buf41), .ifm_input2(ifm_buf42), .ifm_input3(ifm_buf43), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,137|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe13' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe14( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf50), .ifm_input1(ifm_buf51), .ifm_input2(ifm_buf52), .ifm_input3(ifm_buf53), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,139|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe14' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe20( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf20), .ifm_input1(ifm_buf21), .ifm_input2(ifm_buf22), .ifm_input3(ifm_buf23), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,143|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe20' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe21( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf30), .ifm_input1(ifm_buf31), .ifm_input2(ifm_buf32), .ifm_input3(ifm_buf33), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,145|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe21' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe22( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf40), .ifm_input1(ifm_buf41), .ifm_input2(ifm_buf42), .ifm_input3(ifm_buf43), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,147|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe22' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe23( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf50), .ifm_input1(ifm_buf51), .ifm_input2(ifm_buf52), .ifm_input3(ifm_buf53), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,149|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe23' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe24( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf60), .ifm_input1(ifm_buf61), .ifm_input2(ifm_buf62), .ifm_input3(ifm_buf63), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,151|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe24' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe30( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf30), .ifm_input1(ifm_buf31), .ifm_input2(ifm_buf32), .ifm_input3(ifm_buf33), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,155|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe30' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe31( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf40), .ifm_input1(ifm_buf41), .ifm_input2(ifm_buf42), .ifm_input3(ifm_buf43), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,157|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe31' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe32( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf50), .ifm_input1(ifm_buf51), .ifm_input2(ifm_buf52), .ifm_input3(ifm_buf53), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,159|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe32' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe33( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf60), .ifm_input1(ifm_buf61), .ifm_input2(ifm_buf62), .ifm_input3(ifm_buf63), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,161|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe33' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+	PE pe34( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf70), .ifm_input1(ifm_buf71), .ifm_input2(ifm_buf72), .ifm_input3(ifm_buf73), 
+	      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,163|7): instance 'tb_conv.conv_acc@CONV_ACC<module>.pe34' of design unit 'PE' is unresolved in 'worklib.CONV_ACC:v'.
+    ) writeback_control (
+                      |
+xmelab: *E,CUVMUR (./CONV_ACC.v,178|22): instance 'tb_conv.conv_acc@CONV_ACC<module>.writeback_control' of design unit 'WRITE_BACK' is unresolved in 'worklib.CONV_ACC:v'.
+    ) psum_buff0 (
+               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,212|15): instance 'tb_conv.conv_acc@CONV_ACC<module>.psum_buff0' of design unit 'PSUM_BUFF' is unresolved in 'worklib.CONV_ACC:v'.
+    ) psum_buff1 (
+               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,231|15): instance 'tb_conv.conv_acc@CONV_ACC<module>.psum_buff1' of design unit 'PSUM_BUFF' is unresolved in 'worklib.CONV_ACC:v'.
+    ) psum_buff2 (
+               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,250|15): instance 'tb_conv.conv_acc@CONV_ACC<module>.psum_buff2' of design unit 'PSUM_BUFF' is unresolved in 'worklib.CONV_ACC:v'.
+    ) psum_buff3 (
+               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,269|15): instance 'tb_conv.conv_acc@CONV_ACC<module>.psum_buff3' of design unit 'PSUM_BUFF' is unresolved in 'worklib.CONV_ACC:v'.
+    ) psum_buff4 (
+               |
+xmelab: *E,CUVMUR (./CONV_ACC.v,288|15): instance 'tb_conv.conv_acc@CONV_ACC<module>.psum_buff4' of design unit 'PSUM_BUFF' is unresolved in 'worklib.CONV_ACC:v'.
+xrun: *E,ELBERR: Error during elaboration (status 1), exiting.
+TOOL:	xrun(64)	18.09-s011: Exiting on Nov 11, 2023 at 22:39:46 CST  (total: 00:00:00)

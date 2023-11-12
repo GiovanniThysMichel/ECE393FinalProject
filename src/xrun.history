@@ -1,0 +1,12 @@
+s1(11Nov2023:22:11:55):  xrun -64bit -gui -access r tb_conv.v 
+s2(11Nov2023:22:15:09):  xrun -64bit -gui -access r tb_conv.v 
+s3(11Nov2023:22:16:30):  xrun -64bit -gui -access r tb_conv.v 
+s4(11Nov2023:22:18:32):  xrun -64bit -gui -access r tb_conv.v 
+s5(11Nov2023:22:20:24):  xrun -64bit -gui -access r tb_conv.v 
+s6(11Nov2023:22:23:43):  xrun -64bit -gui -access r tb_conv.v 
+s7(11Nov2023:22:28:13):  xrun -64bit -gui -access r tb_conv.v 
+s8(11Nov2023:22:28:36):  xrun -64bit -gui -access r tb_conv.v CONV_ACC.v 
+s9(11Nov2023:22:32:14):  xrun -64bit -gui -access r tb_PE_FSM.v PE_FSM.v 
+s10(11Nov2023:22:35:54):  xrun -64bit -gui -access r tb_conv.v CONV_ACC.v 
+s11(11Nov2023:22:39:22):  xrun -64bit -gui -access r tb_conv.v CONV_ACC.v 
+s12(11Nov2023:22:39:46):  xrun -64bit -gui -access r tb_conv.v CONV_ACC.v 
