@@ -1,0 +1,53 @@
+setMultiCpuUsage -localCpu 8
+set work_path /home/wyx/Desktop/CNN
+set tech_lib  /home/wyx/smic18/smic.18_standardcell_pdk/smic180
+
+
+#### initial design #######
+
+set init_verilog            [list $work_path/DC_OUT/CONV_ACC.v]
+set init_top_cell           CONV_ACC
+set init_design_netlisttype Verilog
+set init_pwr_net            {VDD}
+set init_gnd_net            {VSS}
+set init_io_file            {}
+set init_design_settop      1
+set init_design_uniquify    1
+set init_remove_assigns     1
+set init_lef_file           [list $tech_lib/digital/sc/lef/smic18_6lm.lef]
+set init_mmmc_file          $work_path/Script/Innovus/viewDefinition.tcl
+
+init_design
+
+##### define process
+setDesignMode -process 180
+setAnalysisMode -analysisType onChipVariation
+
+##### define timing report ########
+set_table_style -name report_timing -max_widths {10000}
+set_global report_precision 4
+set_global line_length 10000
+set_global report_timing_format {instance cell arc delay incr_delay arrival slew load fanout instance_location}
+
+##### FP
+source $work_path/Script/Innovus/run_fp.tcl
+loadIoFile $work_path/Script/Innovus/CONV_ACC.io
+
+##### Place
+source  $work_path/Script/Innovus/run_palce.tcl
+
+
+##### CTS
+source  $work_path/Script/Innovus/run_cts.tcl
+
+
+##### Route
+source  $work_path/Script/Innovus/run_route.tcl
+
+##### stream out
+source $work_path/Script/Innovus/run_streamout.tcl
+
+#### report
+source $work_path/Script/Innovus/run_report.tcl
+
+exit

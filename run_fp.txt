@@ -1,0 +1,58 @@
+####### 1 specify floorplan size  
+
+floorPlan -site smic18site -d 1300.0 1280.0 25.0 25.0 25.0 25.0 -noSnapToGrid
+
+####### 2 edit io pin 
+
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+
+#### input pin dbGet [dbGet -p top.terms.isInput 1].name
+editPin -pinWidth 0.28 -pinDepth 0.28 -fixOverlap 1 -unit MICRON -spreadDirection clockwise -side Left -layer 3 -spreadType center -spacing 1.12 -pin {{cfg_ci[0]} {cfg_ci[1]} {cfg_co[0]} {cfg_co[1]} {ifm[0]} {ifm[1]} {ifm[2]} {ifm[3]} {ifm[4]} {ifm[5]} {ifm[6]} {ifm[7]} {ifm[8]} {ifm[9]} {ifm[10]} {ifm[11]} {ifm[12]} {ifm[13]} {ifm[14]} {ifm[15]} {ifm[16]} {ifm[17]} {ifm[18]} {ifm[19]} {ifm[20]} {ifm[21]} {ifm[22]} {ifm[23]} {ifm[24]} {ifm[25]} {ifm[26]} {ifm[27]} {ifm[28]} {ifm[29]} {ifm[30]} {ifm[31]} {ifm[32]} {ifm[33]} {ifm[34]} {ifm[35]} {ifm[36]} {ifm[37]} {ifm[38]} {ifm[39]} {ifm[40]} {ifm[41]} {ifm[42]} {ifm[43]} {ifm[44]} {ifm[45]} {ifm[46]} {ifm[47]} {ifm[48]} {ifm[49]} {ifm[50]} {ifm[51]} {ifm[52]} {ifm[53]} {ifm[54]} {ifm[55]} {ifm[56]} {ifm[57]} {ifm[58]} {ifm[59]} {ifm[60]} {ifm[61]} {ifm[62]} {ifm[63]} {weight[0]} {weight[1]} {weight[2]} {weight[3]} {weight[4]} {weight[5]} {weight[6]} {weight[7]} {weight[8]} {weight[9]} {weight[10]} {weight[11]} {weight[12]} {weight[13]} {weight[14]} {weight[15]} {weight[16]} {weight[17]} {weight[18]} {weight[19]} {weight[20]} {weight[21]} {weight[22]} {weight[23]} {weight[24]} {weight[25]} {weight[26]} {weight[27]} {weight[28]} {weight[29]} {weight[30]} {weight[31]} start_conv}
+
+#### clk pin rst pin
+editPin -fixOverlap 1 -unit MICRON -spreadDirection clockwise -side Left -layer 3 -spreadType start -spacing 1.12 -start 15.3545 784.921 -pin {clk rst_n}
+
+#### output pin
+editPin -fixOverlap 1 -unit MICRON -spreadDirection clockwise -side Right -layer 3 -spreadType center -spacing 1.12 -pin {end_conv ifm_read {ofm_port0[0]} {ofm_port0[1]} {ofm_port0[2]} {ofm_port0[3]} {ofm_port0[4]} {ofm_port0[5]} {ofm_port0[6]} {ofm_port0[7]} {ofm_port0[8]} {ofm_port0[9]} {ofm_port0[10]} {ofm_port0[11]} {ofm_port0[12]} {ofm_port0[13]} {ofm_port0[14]} {ofm_port0[15]} {ofm_port0[16]} {ofm_port0[17]} {ofm_port0[18]} {ofm_port0[19]} {ofm_port0[20]} {ofm_port0[21]} {ofm_port0[22]} {ofm_port0[23]} {ofm_port0[24]} ofm_port0_v {ofm_port1[0]} {ofm_port1[1]} {ofm_port1[2]} {ofm_port1[3]} {ofm_port1[4]} {ofm_port1[5]} {ofm_port1[6]} {ofm_port1[7]} {ofm_port1[8]} {ofm_port1[9]} {ofm_port1[10]} {ofm_port1[11]} {ofm_port1[12]} {ofm_port1[13]} {ofm_port1[14]} {ofm_port1[15]} {ofm_port1[16]} {ofm_port1[17]} {ofm_port1[18]} {ofm_port1[19]} {ofm_port1[20]} {ofm_port1[21]} {ofm_port1[22]} {ofm_port1[23]} {ofm_port1[24]} ofm_port1_v wgt_read}
+ 
+setPinAssignMode -pinEditInBatch false
+
+####### 2 add endTap wellTap
+
+setEndCapMode -reset
+setEndCapMode -leftBottomCorner FILL1 -leftTopCorner FILL1 -rightBottomCorner FILL1 -rightTopCorner FILL1 -leftBottomEdge FILL1 -leftTopEdge FILL1 -leftEdge FILL1 -rightBottomEdge FILL1 -rightTopEdge FILL1 -rightEdge FILL1 -topBottomEdge FILL1 -topEdge FILL1 -bottomEdge FILL1 -incrementalLeftEdge FILL1 -incrementalRightEdge FILL1 -boundary_tap false
+addEndCap
+
+addWellTap -cell FILL1 -cellInterval 100 -inRowOffset 26.4 -prefix WELLTAP
+
+###### 3 global net connect 
+
+globalNetConnect  VSS -type pgpin -pin VSS -override 
+globalNetConnect  VDD -type pgpin -pin VDD -override
+globalNetConnect  VDD -type tiehi
+globalNetConnect  VSS -type tielo
+
+###### 4 AddRing  
+
+setAddRingMode -ring_target default -extend_over_row 0 -ignore_rows 0 -avoid_short 0 -skip_crossing_trunks none -stacked_via_top_layer METAL6 -stacked_via_bottom_layer METAL1 -via_using_exact_crossover_size 1 -orthogonal_only true -skip_via_on_pin {  standardcell } -skip_via_on_wire_shape {  noshape }
+
+addRing -nets {VDD VSS} -type core_rings -follow io -layer {top METAL5 bottom METAL5 left METAL6 right METAL6} -width {top 8 bottom 8 left 8 right 8} -spacing {top 2 bottom 2 left 2 right 2} -offset {top 2 bottom 2 left 2 right 2} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid None
+
+
+###### 5 AddStripe
+
+# V
+setAddStripeMode -ignore_block_check false -break_at none -route_over_rows_only false -rows_without_stripes_only false -extend_to_closest_target none -stop_at_last_wire_for_area false -partial_set_thru_domain false -ignore_nondefault_domains false -trim_antenna_back_to_shape none -spacing_type edge_to_edge -spacing_from_block 0 -stripe_min_length stripe_width -stacked_via_top_layer METAL6 -stacked_via_bottom_layer METAL1 -via_using_exact_crossover_size false -split_vias false -orthogonal_only true -allow_jog { padcore_ring  block_ring } -skip_via_on_pin {  standardcell } -skip_via_on_wire_shape {  noshape   }
+addStripe -nets {VDD VSS} -layer METAL6 -direction vertical -width 2 -spacing 0.66 -set_to_set_distance 99.66 -start_from left -start_offset 24.4 -switch_layer_over_obs false -max_same_layer_jog_length 2 -padcore_ring_top_layer_limit METAL6 -padcore_ring_bottom_layer_limit METAL1 -block_ring_top_layer_limit METAL6 -block_ring_bottom_layer_limit METAL1 -use_wire_group 0 -snap_wire_center_to_grid None
+# H
+setAddStripeMode -ignore_block_check false -break_at none -route_over_rows_only false -rows_without_stripes_only false -extend_to_closest_target none -stop_at_last_wire_for_area false -partial_set_thru_domain false -ignore_nondefault_domains false -trim_antenna_back_to_shape none -spacing_type edge_to_edge -spacing_from_block 0 -stripe_min_length stripe_width -stacked_via_top_layer METAL6 -stacked_via_bottom_layer METAL1 -via_using_exact_crossover_size false -split_vias false -orthogonal_only true -allow_jog { padcore_ring  block_ring } -skip_via_on_pin {  standardcell } -skip_via_on_wire_shape {  noshape   }
+addStripe -nets {VDD VSS} -layer METAL5 -direction horizontal -width 2 -spacing 0.66 -set_to_set_distance 99.66 -start_from bottom -start_offset 24.4 -switch_layer_over_obs false -max_same_layer_jog_length 2 -padcore_ring_top_layer_limit METAL6 -padcore_ring_bottom_layer_limit METAL1 -block_ring_top_layer_limit METAL6 -block_ring_bottom_layer_limit METAL1 -use_wire_group 0 -snap_wire_center_to_grid None
+
+##### 6 special route
+
+setSrouteMode -viaConnectToShape { stripe followpin }
+sroute -connect { blockPin padPin padRing corePin floatingStripe } -layerChangeRange { METAL1(1) METAL6(6) } -blockPinTarget { nearestTarget } -padPinPortConnect { allPort oneGeom } -padPinTarget { nearestTarget } -corePinTarget { firstAfterRowEnd } -floatingStripeTarget { blockring padring ring stripe ringpin blockpin followpin } -allowJogging 1 -crossoverViaLayerRange { METAL1(1) METAL6(6) } -nets { VDD VSS } -allowLayerChange 1 -blockPin useLef -targetViaLayerRange { METAL1(1) METAL6(6) }
+
+##### 7 saveDesign 
+saveDesign -def ./out/[dbGet top.name].fp.enc

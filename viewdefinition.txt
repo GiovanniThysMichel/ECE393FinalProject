@@ -1,0 +1,83 @@
+##### define library sets
+#fast.lib slow.lib typical.lib 
+
+
+########  timing lib
+#
+create_library_set -name fast    -timing [list $tech_lib/digital/sc/synopsys/fast.lib]
+create_library_set -name typical -timing [list $tech_lib/digital/sc/synopsys/typical.lib]
+create_library_set -name slow    -timing [list $tech_lib/digital/sc/synopsys/slow.lib]
+
+
+####### define op_cond 
+
+create_op_cond -name fast -library_file $tech_lib/digital/sc/synopsys/fast.lib -P 1 -V 1.98 -T 0
+create_op_cond -name typical -library_file $tech_lib/digital/sc/synopsys/typical.lib -P 1 -V 1.8 -T 25
+create_op_cond -name slow -library_file $tech_lib/digital/sc/synopsys/slow.lib -P 1 -V 125 -T 1.62
+
+######## define rc corner
+
+create_rc_corner -name fast \
+   -cap_table $tech_lib/ict_captbl/018cap_table_basic/smic_logic018_6lm_min.CapTbl\
+   -preRoute_res 1\
+   -postRoute_res 1\
+   -preRoute_cap 1\
+   -postRoute_cap 1\
+   -postRoute_xcap 1\
+   -preRoute_clkres 0\
+   -preRoute_clkcap 0\
+   -T -40\
+   -qx_tech_file $tech_lib/ict_captbl/018cap_table_comp/smic_logic018_6lm_min.capTbl
+
+create_rc_corner -name typical \
+   -cap_table $tech_lib/ict_captbl/018cap_table_basic/smic_logic018_6lm_typ.CapTbl\
+   -preRoute_res 1\
+   -postRoute_res 1\
+   -preRoute_cap 1\
+   -postRoute_cap 1\
+   -postRoute_xcap 1\
+   -preRoute_clkres 0\
+   -preRoute_clkcap 0\
+   -T -40\
+   -qx_tech_file $tech_lib/ict_captbl/018cap_table_comp/smic_logic018_6lm_typ.capTbl
+
+create_rc_corner -name slow \
+   -cap_table $tech_lib/ict_captbl/018cap_table_basic/smic_logic018_6lm_max.CapTbl\
+   -preRoute_res 1\
+   -postRoute_res 1\
+   -preRoute_cap 1\
+   -postRoute_cap 1\
+   -postRoute_xcap 1\
+   -preRoute_clkres 0\
+   -preRoute_clkcap 0\
+   -T -40\
+   -qx_tech_file $tech_lib/ict_captbl/018cap_table_comp/smic_logic018_6lm_max.capTbl
+
+#####  define delay corners 
+
+create_delay_corner -name fast \
+ -library_set    fast \
+ -rc_corner      fast
+
+create_delay_corner -name typical \
+ -library_set    typical \
+ -rc_corner      typical
+
+create_delay_corner -name slow \
+ -library_set    slow \
+ -rc_corner      slow
+
+###### define constraint_mode
+
+create_constraint_mode -name func \
+   -sdc_files [list /home/wyx/Desktop/CNN/DC_OUT/CONV_ACC.sdc]
+
+####### define analysis 
+
+create_analysis_view -name fast -constraint_mode func -delay_corner fast
+create_analysis_view -name typical -constraint_mode func -delay_corner typical
+create_analysis_view -name slow -constraint_mode func -delay_corner slow
+
+####### analysis_view 
+
+set_analysis_view -setup [list slow] -hold [list fast]

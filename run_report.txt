@@ -1,0 +1,4 @@
+#####
+report_area > out/report_area.txt
+report_power > out/report_power.txt
+report_clocks > out/report_clock.txt

@@ -1,0 +1,51 @@
+#####  NDR
+set_interactive_constraint_modes func
+set ndr_name NDR_2s1w
+
+add_ndr -name $ndr_name -width_multiplier {2:5 2} -spacing_multiplier {2:5 2} -generate_via
+create_route_type -name TOP -top_preferred_layer 5 -bottom_preferred_layer 3 \
+-preferred_routing_layer_effort medium -non_default_rule $ndr_name 
+
+create_route_type -name TRUNK -top_preferred_layer 5 -bottom_preferred_layer 3 \
+-preferred_routing_layer_effort medium -non_default_rule $ndr_name 
+
+create_route_type -name LEAF -top_preferred_layer METAL4 -bottom_preferred_layer METAL1 \
+-preferred_routing_layer_effort medium 
+
+
+set_ccopt_property route_type TOP -net_type top
+set_ccopt_property route_type TRUNK -net_type trunk
+set_ccopt_property route_type LEAF -net_type leaf
+
+#### use cell type
+
+set_ccopt_property buffer_cells {}
+set_ccopt_property inverter_cells {CLKINVX16 CLKINVX12 CLKINVX8 CLKINVX4}
+
+set_ccopt_property target_skew 0.2
+set_ccopt_property target_max_trans -net_type leaf 0.6
+set_ccopt_property target_max_trans -net_type trunk 0.6
+set_ccopt_property target_max_trans -net_type top 0.6
+set_ccopt_property use_inverters true
+set_ccopt_property cell_density 0.5
+set_ccopt_property max_fanout 30
+
+##### 
+setOptMode -addInstancePrefix CTS
+create_ccopt_clock_tree_spec -file ccopt.spec
+source ccopt.spec
+report_ccopt_clock_tree_structure -file ccopt_structure.txt -show_sinks -expand_below_logic
+ccopt_design -cts
+report_ccopt_skew_groups -file ccopt_skew_groups.txt
+report_ccopt_clock_trees -file ccopt_clock_trees.txt
+report_ccopt_clock_tree_cells -file ccopt_clock_tree_cells.txt
+
+
+#### postC
+#set_clock_uncertainty -setup 0.8 [all_clocks]
+set_propagated_clock [all_clocks]
+optDesign -postCts -expandedViews -outDir out/OptDesignPostC
+timeDesign -hold -numPaths 1000 -outDir ./out/OptDesignPostC -prefix postC -expandedViews -postCTS
+
+
+saveDesign -def ./out/[dbGet top.name].postcts.enc

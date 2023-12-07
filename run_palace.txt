@@ -1,0 +1,54 @@
+#### 
+setOptMode -usefulSkew false 
+setOptMode -addInstancePrefix PreC
+
+#####  path group
+reset_path_group -all
+createBasicPathGroups -expanded
+reportPathGroupOptions
+
+group_path -name reg2reg -from [all_registers] -to [all_registers]
+group_path -name reg2out -to   [all_outputs]
+group_path -name in2reg  -from [all_inputs]
+group_path -name in2out  -from [all_inputs]    -to [all_outputs]
+
+setPathGroupOptions reg2reg -effortLevel high 
+setPathGroupOptions in2reg  -effortLevel low 
+setPathGroupOptions reg2out -effortLevel low 
+setPathGroupOptions in2out  -effortLevel low 
+
+##### attach IO buffer 
+set OUT [open pin_list w]
+set pinlists [dbGet top.terms.name]
+
+foreach pinlist $pinlists {
+               puts $OUT "$pinlist"
+}
+close $OUT
+
+attachIOBuffer \
+-selNetFile ./pin_list \
+-suffix _xIOx \
+-in CLKBUFX4 -out CLKBUFX16 \
+-excludeClockNet \
+-status fixed \
+-port
+
+##### cell pad
+
+specifyCellPad DFF* 8
+
+
+##### opt_design 
+
+timeDesign -preplace -expandedViews -outDir out/PrePlace -numPaths 500 -prefix prePlace
+place_opt_design -expanded_views -out_dir out/OptDesignPreC
+
+
+##### add tiehi tielo
+
+setTieHiLoMode -cell "TIEHI TIELO" -maxFanout 10 -maxDistance 50
+addTieHiLo -prefix [dbGet top.name]_TIEHILO
+
+remove_assigns
+saveDesign -def out/[dbGet top.name].place.enc

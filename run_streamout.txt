@@ -1,0 +1,13 @@
+## add filler
+
+getFillerMode -quiet
+addFiller -cell FILL1 FILL16 FILL2 FILL32 FILL4 FILL64 FILL8 -prefix FILLER -doDRC -fitGap
+
+## stream out
+
+streamOut out/[dbGet top.name].merge.gds.gz -merge $tech_lib/digital/sc/gds2/smic18.gds2 -mapFile $tech_lib/digital/sc/gds2/layer_table -uniquifyCellNames -units 1000
+
+saveNetlist -phys -excludeLeafCell -excludeCellInst {FILL64 FILL32 FILL16 FILL8 FILL4 FILL2 FILL1}  out/[dbGet top.name].lvs.v.gz
+saveNetlist -excludeLeafCell -includePowerGround  out/[dbGet top.name].sim.pg.v.gz
+
+saveDesign -def out/[dbGet top.name].streamout.enc

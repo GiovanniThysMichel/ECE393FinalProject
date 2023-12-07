@@ -1,0 +1,37 @@
+####### 
+setOptMode -setupTargetSlack 0.01
+setOptMode -holdTargetSlack 0.01
+setOptMode -holdFixingCells {DLY1X1 BUFX1 BUFX2}
+setOptMode -addInstancePrefix PostR
+
+setNanoRouteMode -reset
+setRouteMode -earlyGlobalHonorMsvRouteConstraint false -earlyGlobalRoutePartitionPinGuide true
+setNanoRouteMode -quiet -routeTopRoutingLayer 5
+setNanoRouteMode -quiet -droutePostRouteSpreadWire 1
+setNanoRouteMode -quiet -droutePostRouteWidenWireRule NDR_2s1w
+setNanoRouteMode -quiet -routeWithTimingDriven true
+setNanoRouteMode -quiet -timingEngine {}
+
+setNanoRouteMode -quiet -routeBottomRoutingLayer default
+setNanoRouteMode -quiet -drouteEndIteration default
+setNanoRouteMode -quiet -routeWithTimingDriven true
+setNanoRouteMode -quiet -routeWithSiDriven false
+
+#### route 
+
+routeDesign -globalDetail
+
+#### opt
+
+optDesign -postRoute -expandedViews -outDir out/OptDesignPostR
+getCTSMode -engine -quiet
+setOptMode -fixCap true -fixTran true -fixFanoutLoad true
+optDesign -postRoute -expandedViews -outDir out/OptDesignPostR
+optDesign -postRoute -hold -expandedViews -outDir out/OptDesignPostR
+
+timeDesign -hold -numPaths 500 -outDir out/OptDesignPostR -prefix postR_hold -expandedViews -postRoute
+
+
+deleteCellPad *
+
+saveDesign -def ./out/[dbGet top.name].route.enc
